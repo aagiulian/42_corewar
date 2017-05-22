@@ -16,13 +16,14 @@ COMPILER		= gcc
 
 CC_FLAGS		= -Wall -Werror -Wextra -g
 
-INC				= ./includes/asm.h \
-					./includes/op.h
+INC				= ./includes/asm.h
 
 SRC_DIR			= ./srcs
 
 SRC				=	main.c \
 					ft_head.c \
+					ft_header.c \
+					ft_write.c \
 					ft_launcher.c
 
 OBJ				= $(SRC:.c=.o)
@@ -36,10 +37,10 @@ all : $(NAME)
 $(NAME): $(OBJ) $(INC)
 	@$(NEWLINE)
 	@echo "Compilation de la libft..."
-	@MAKE -C libft/
+	@-C libft/
 	@$(NEWLINE)
 	@echo "Compilation de l'asm..."
-	@$(COMPILER) $(CC_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
+	@$(COMPILER) $(CC_FLAGS) $(OBJ) ./Libft/libft.a -o $(NAME)
 	@$(NEWLINE)
 	@echo "asm cree !"
 	$(NEWLINE)

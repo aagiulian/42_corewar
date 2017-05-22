@@ -14,15 +14,25 @@
 # define ASM_H
 # include "op.h"
 # include "../Libft/printf/printf.h"
+# include "../Libft/srclib/libft.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+#include <stdio.h>
 
 typedef struct		s_asm
 {
 					int		fd;
-					char	head[PROG_NAME_LENGTH + COMMENT_LENGTH];
+					char	*file;
+					char	*name;
+					char	*comment;
 					char	*content;
+					char	header[PROG_NAME_LENGTH + COMMENT_LENGTH];
 }					t_asm;
 
 int				ft_launcher(char *file);
 int				ft_head(t_asm *sfile);
+int				ft_set_header(t_asm *sfile);
+int				ft_write(t_asm *sfile);
 
 #endif

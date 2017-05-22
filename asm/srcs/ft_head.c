@@ -1,5 +1,14 @@
 #include "asm.h"
 
+char	*ft_erase_dc(char *str)
+{
+	char	*tmp;
+
+	tmp = str + 1;
+	tmp[ft_strlen(tmp) - 1] = '\0';
+	return (tmp);
+}
+
 int		ft_head(t_asm *sfile)
 {
 	int		i;
@@ -8,14 +17,24 @@ int		ft_head(t_asm *sfile)
 	char	*line;
 
 	i = 0;
-	while ((ret = get_next_line(sfile->fd, &line) > 0))
+	while (i < 2 && (ret = get_next_line(sfile->fd, &line) > 0))
 	{
 		tab = ft_strsplit(line, ' ');
 		if (i == 0)
 		{
 			if (ft_strcmp(tab[0], ".name") == 0)
-				ft_printf("name: %s\n", tab[0]);
+				sfile->name = ft_strdup(ft_erase_dc(tab[1]));
 		}
+		else
+		{
+			if (ft_strcmp(tab[0], ".comment") == 0)
+				sfile->comment = ft_strdup(ft_erase_dc(line + 9));
+		}
+		ft_free_strtab(tab);
+		free(line);
+		i++;
 	}
+	ft_printf("name:%s comment:%s\n",sfile->name, sfile->comment);
+	ft_set_header(sfile);
 	return (0);
 }

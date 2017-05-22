@@ -45,9 +45,7 @@ void	ft_prec_int(t_print *arg, t_flag *flag)
 char	*ft_trt_int(t_print *arg, t_flag *flag)
 {
 	char	*str;
-	int		len;
 
-	len = 0;
 	str = NULL;
 	if (arg->specifier == 'D')
 		arg->length[0] = 'l';
