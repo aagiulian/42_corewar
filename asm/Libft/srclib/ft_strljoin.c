@@ -28,7 +28,5 @@ char		*ft_strljoin(char *s1, char *s2, int len1, int len2)
 		str[len1 + j] = s2[j];
 		j++;
 	}
-	free((char *)s1);
-	free((char *)s2);
 	return (str);
 }

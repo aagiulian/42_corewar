@@ -75,6 +75,7 @@ LIB_SRC		=	ft_strlen.c\
 				ft_strtrim.c \
 				ft_memmove.c \
 				ft_strsplit.c \
+				ft_strsplitif.c \
 				ft_strlcat.c \
 				ft_back_memcpy.c \
 				ft_isspace.c \

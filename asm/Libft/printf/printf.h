@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <inttypes.h>
 # include "../srclib/libft.h"
 
 typedef struct			s_print

@@ -19,17 +19,20 @@ int		ft_check_error(char *file, t_asm *sfile)
 	}
 	tab = ft_strsplit(file, '.');
 	sfile->file = ft_strjoin(tab[0], ".cor", 0);
+	ft_printf("pk: %s\n",sfile->file);
 	ft_free_strtab(tab);
 	return (1);
 }
 
 int		ft_launcher(char *file)
 {
-	t_asm sfile;
+	t_asm	sfile;
 
 	ft_bzero(&sfile, sizeof(t_asm));
+	sfile.content = ft_strnew(1);
 	ft_check_error(file, &sfile);
 	ft_head(&sfile);
+	ft_asm(&sfile);
 	ft_write(&sfile);
 	return (0);
 }

@@ -22,17 +22,34 @@
 
 typedef struct		s_asm
 {
-					int		fd;
-					char	*file;
-					char	*name;
-					char	*comment;
-					char	*content;
-					char	header[PROG_NAME_LENGTH + COMMENT_LENGTH];
+				int fd;
+				int size;
+				char *file;
+				char *name;
+				char *comment;
+				char *instr;
+				char *content;
+				char header[PROG_NAME_LENGTH + COMMENT_LENGTH];
+				char **champ;
 }					t_asm;
+
+typedef struct		s_op
+{
+					char *instr;
+					int nbargs;
+					int *arg;
+					int opcode;
+					int cycle;
+					char *name;
+					int o;
+					int sef;
+}					t_op;
 
 int				ft_launcher(char *file);
 int				ft_head(t_asm *sfile);
 int				ft_set_header(t_asm *sfile);
+int				ft_asm(t_asm *sfile);
 int				ft_write(t_asm *sfile);
+int				ft_trt_instr(t_asm *sfile, char **tab);
 
 #endif

@@ -21,9 +21,12 @@ INC				= ./includes/asm.h
 SRC_DIR			= ./srcs
 
 SRC				=	main.c \
+					ft_asm.c \
 					ft_head.c \
-					ft_header.c \
+					ft_instr.c \
 					ft_write.c \
+					ft_header.c \
+					op.c \
 					ft_launcher.c
 
 OBJ				= $(SRC:.c=.o)
@@ -37,7 +40,6 @@ all : $(NAME)
 $(NAME): $(OBJ) $(INC)
 	@$(NEWLINE)
 	@echo "Compilation de la libft..."
-	@-C libft/
 	@$(NEWLINE)
 	@echo "Compilation de l'asm..."
 	@$(COMPILER) $(CC_FLAGS) $(OBJ) ./Libft/libft.a -o $(NAME)
@@ -51,13 +53,11 @@ $(NAME): $(OBJ) $(INC)
 clean:
 	@echo "Suppression des objets"
 	$(NEWLINE)
-	@MAKE clean -C libft/
 	@rm -rf $(OBJ)
 
 fclean: clean
 	@echo "Suppression de l'executable"
 	$(NEWLINE)
-	@MAKE fclean -C libft/
 	@rm -rf $(NAME)
 
 re: fclean 
