@@ -19,7 +19,6 @@ int		ft_check_error(char *file, t_asm *sfile)
 	}
 	tab = ft_strsplit(file, '.');
 	sfile->file = ft_strjoin(tab[0], ".cor", 0);
-	ft_printf("pk: %s\n",sfile->file);
 	ft_free_strtab(tab);
 	return (1);
 }

@@ -14,7 +14,9 @@ int		ft_stock_champ(t_asm *sfile)
 		free(line);
 		i++;
 	}
-return (0);
+	if (ret == -1)
+		return (0);
+return (1);
 }
 
 
@@ -37,14 +39,12 @@ int		ft_parse(t_asm *sfile)
 	i = 0;
 	while (sfile->champ[i])
 	{
-		tab = ft_strsplitif(sfile->champ[i], ft_isspace);
-		ft_printf("tab0: %s\n", tab[0]);
+		tab = ft_strsplitnbif(sfile->champ[i], ft_isspace, 1);
 		if (tab[0])
 		ft_trt_champ(sfile,tab);
 		//ft_free_strtab(tab);
 		i++;
 	}
-	ft_printf("OLOLOLOLOL\n");
 	return (0);
 }
 
