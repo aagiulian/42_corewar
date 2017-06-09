@@ -2,7 +2,7 @@
 
 extern t_op op_tab[17];
 
-int		ft_splitinstr(char c)
+int		ft_split_instr(char c)
 {
 	if (ft_isspace(c) || c == SEPARATOR_CHAR)
 		return (1);
@@ -12,42 +12,47 @@ int		ft_splitinstr(char c)
 int		ft_set_codage(char *str, t_asm *sfile)
 {
 	int i;
-	char desc;
+	unsigned char desc;
 	char **tab;
+	char *tmp;
+	int		size;
 
 	i = 0;
-	desc = '\0';
-	ft_printf("str:%s\n", str);
-	tab = ft_strsplitnbif(str, ft_splitinstr, 2);
-	while (tab[i])
+	desc = 0;
+	size = 1;
+	tab = ft_strsplitnbif(str, ft_split_instr, 2);
+	while (tab[i] && i < 4)
 	{
+		desc <<= 2;
 		if (tab[i][0] == 'r')
 		{
-			ft_printf("tabr:%s\n", tab[i]);
-			desc |= 0b00000001;
+			size += T_REG;
+			desc |= REG_CODE;
+			tmp = tab[i] + 1;
+			ft_printf("tmp:%s sisze:%d\n",tmp,size);
+			sfile->instr[size] = ft_atoi(tmp);
 		}
 		else if (tab[i][0] == DIRECT_CHAR)
 		{
-			ft_printf("tabd:%s\n", tab[i]);
-			desc |= 0b00000010;
+			size += T_DIR;
+			desc |= DIR_CODE;
+			tmp = tab[i] + 1;
+			ft_printf("tmpatiu:%d size:%d\n",ft_atoi(tmp),size);
+			sfile->instr[size] = ft_atoi(tmp);
 		}
 		else if (ft_isstrdigit(tab[i]))
 		{
-			ft_printf("tabi:%s\n", tab[i]);
-			desc |= 0b00000011;
+			size += T_IND;
+			desc |= IND_CODE;
 		}
-		else
-			ft_printf("ntab:%s\n", tab[i]);
-		desc <<= 2;
 		i++;
 	}
-	while (i < 3)
+	while (i < 4)
 	{
 		desc <<= 2;
 		i++;
 	}
 	sfile->instr[1] = desc;
-	ft_printf("desc:%x\n\n",desc);
 	ft_free_strtab(tab);
 	return (0);
 }
@@ -59,19 +64,19 @@ int		ft_size_instr(char *str, t_asm *sfile)
 	int i;
 
 	i = 0;
-	size = 0;
-	tab = ft_strsplit(str, SEPARATOR_CHAR);
+	size = 2;
+	tab = ft_strsplitnbif(str, ft_split_instr, 2);
 	while (tab[i])
 	{
 		if (tab[i][0] == 'r')
-			size += REG_SIZE;
+			size += T_REG;
 		else if (tab[i][0] == DIRECT_CHAR)
-			size += DIR_SIZE;
+			size += T_DIR;
 		else if (ft_isstrdigit(tab[i]))
-			size += IND_SIZE;
+			size += T_IND;
 		i++;
 	}
-	sfile->instr = ft_strnew(size + 2);
+	sfile->instr = ft_strnew(size);
 	ft_free_strtab(tab);
 	return (size);
 }
@@ -84,7 +89,7 @@ int		ft_start_instr(char *instr, t_asm *sfile)
 	while (op_tab[i].instr && ft_strcmp(op_tab[i].instr, instr))
 		i++;
 	if (op_tab[i].instr)
-	sfile->instr[0]= op_tab[i].opcode;
+		sfile->instr[0]= op_tab[i].opcode;
 	return (0);
 }
 
@@ -96,7 +101,7 @@ int		ft_trt_instr(t_asm *sfile, char **tab)
 	ft_start_instr(tab[0], sfile);
 	ft_set_codage(tab[1], sfile);
 	sfile->content = ft_strljoin(sfile->content, sfile->instr, sfile->size, size);
-	sfile->size += size + 2;
+	sfile->size += size;
 	free(sfile->instr);
 	return (0);
 }

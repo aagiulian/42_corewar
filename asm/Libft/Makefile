@@ -6,7 +6,7 @@
 #    By: fmaury <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 11:00:31 by fmaury            #+#    #+#              #
-#    Updated: 2017/05/13 14:43:58 by fmaury           ###   ########.fr        #
+#    Updated: 2017/06/08 15:39:27 by fmaury           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -60,6 +60,8 @@ LIB_SRC		=	ft_strlen.c\
 				ft_strdel.c \
 				ft_striter.c \
 				ft_striteri.c \
+				ft_strsplitif.c \
+				ft_strsplitnbif.c \
 				ft_strmap.c \
 				ft_strmapi.c \
 				ft_strequ.c \
