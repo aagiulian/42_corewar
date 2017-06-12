@@ -34,7 +34,7 @@ int		ft_set_codage(char *str, t_asm *sfile)
 		}
 		else if (tab[i][0] == DIRECT_CHAR)
 		{
-			size += T_DIR;
+			size += DIR_SIZE;
 			desc |= DIR_CODE;
 			tmp = tab[i] + 1;
 			ft_printf("tmpatiu:%d size:%d\n",ft_atoi(tmp),size);
@@ -42,8 +42,9 @@ int		ft_set_codage(char *str, t_asm *sfile)
 		}
 		else if (ft_isstrdigit(tab[i]))
 		{
-			size += T_IND;
+			size += IND_SIZE;
 			desc |= IND_CODE;
+			sfile->instr[size] = ft_atoi(tab[i]);
 		}
 		i++;
 	}
@@ -71,9 +72,9 @@ int		ft_size_instr(char *str, t_asm *sfile)
 		if (tab[i][0] == 'r')
 			size += T_REG;
 		else if (tab[i][0] == DIRECT_CHAR)
-			size += T_DIR;
+			size += DIR_SIZE;
 		else if (ft_isstrdigit(tab[i]))
-			size += T_IND;
+			size += IND_SIZE;
 		i++;
 	}
 	sfile->instr = ft_strnew(size);
