@@ -19,7 +19,7 @@ int		ft_head(t_asm *sfile)
 	i = 0;
 	while (i < 2 && (ret = get_next_line(sfile->fd, &line) > 0))
 	{
-		tab = ft_strsplit(line, ' ');
+		tab = ft_strsplitnbif(line, ft_isspace, 1);
 		if (i == 0)
 		{
 			if (ft_strcmp(tab[0], ".name") == 0)

@@ -9,7 +9,7 @@ int		ft_split_instr(char c)
 	return (0);
 }
 
-int		ft_set_codage(char *str, t_asm *sfile)
+int		ft_set_codage(char *instr, char *str, t_asm *sfile)
 {
 	int i;
 	unsigned char desc;
@@ -34,7 +34,12 @@ int		ft_set_codage(char *str, t_asm *sfile)
 		}
 		else if (tab[i][0] == DIRECT_CHAR)
 		{
-			size += DIR_SIZE;
+			if (ft_strcmp(instr, "zjmp") != 0 && ft_strcmp(instr, "live")
+				!= 0 && ft_strcmp(instr, "sti") != 0)
+
+				size += DIR_SIZE;
+			else
+				size += IND_SIZE;
 			desc |= DIR_CODE;
 			tmp = tab[i] + 1;
 			ft_printf("tmpatiu:%d size:%d\n",ft_atoi(tmp),size);
@@ -58,7 +63,7 @@ int		ft_set_codage(char *str, t_asm *sfile)
 	return (0);
 }
 
-int		ft_size_instr(char *str, t_asm *sfile)
+int		ft_size_instr(char *instr, char *str, t_asm *sfile)
 {
 	char **tab;
 	int size;
@@ -71,9 +76,11 @@ int		ft_size_instr(char *str, t_asm *sfile)
 	{
 		if (tab[i][0] == 'r')
 			size += T_REG;
-		else if (tab[i][0] == DIRECT_CHAR)
+		else if (tab[i][0] == DIRECT_CHAR && ft_strcmp(instr, "zjmp")
+			!= 0 && ft_strcmp(instr, "live") != 0 &&
+			ft_strcmp(instr, "sti") != 0)
 			size += DIR_SIZE;
-		else if (ft_isstrdigit(tab[i]))
+		else
 			size += IND_SIZE;
 		i++;
 	}
@@ -98,9 +105,9 @@ int		ft_trt_instr(t_asm *sfile, char **tab)
 {
 	int size;
 
-	size = ft_size_instr(tab[1], sfile);
+	size = ft_size_instr(tab[0], tab[1], sfile);
 	ft_start_instr(tab[0], sfile);
-	ft_set_codage(tab[1], sfile);
+	ft_set_codage(tab[0], tab[1], sfile);
 	sfile->content = ft_strljoin(sfile->content, sfile->instr, sfile->size, size);
 	sfile->size += size;
 	free(sfile->instr);
