@@ -32,6 +32,8 @@ $ ./corewar [-v] [-dump nbr_cycle] [[-n prog_number] prog_name][.cor] ...
 $ ./corewar [-v] [-dump nbr_cycle] [[-n prog_number] prog_name][.cor] -ncurse
 ```
 
+![Alt text](./screenshots/example.png?raw=true "Corewar Visualisator")
+
 Example of Redcode program
 ------------
 ```asm
