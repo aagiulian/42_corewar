@@ -20,10 +20,10 @@ $ make
 
 
 ```sh
-$	./asm [-a][-o output file][-r] <sourcefile.s>
+$ ./asm [-a][-o output file][-r] <sourcefile.s>
 	-a: print an annoted version of the code instead of creating a .cor file
-		-o: use the output file as name instead of the default name
-			-r: reverse the binary file
+	-o: use the output file as name instead of the default name
+	-r: reverse the binary file
 ```
 
 ###Virtual Machine
