@@ -4,7 +4,6 @@ CoreWar
 Project
 -------
 The project is 2 months and a half project, with a 4 member team.
-The team was Yhoan Benoit (worked on ASM), Gaspard Schaetz (worked on ASM, script and VM), Alix Rive-decaillot (worked on VM), et Manon Kantzer (worked on VM).
 
 Core War is a programming game created by D. G. Jones and A. K. Dewdney in which two or more battle programs (called "warriors") compete for control of a virtual computer. These battle programs are written in an abstract assembly language called Redcode.
 
@@ -12,9 +11,9 @@ Compile the project
 ------------
 
 ```sh
-$ git clone https://github.com/ggschaetz/Corewar.git
+$ git clone https://github.com/darklink41/42_corewar.git
 $ cd corewar
-$ make full
+$ make
 ```
 
 ###Assembler
@@ -28,9 +27,9 @@ $ ./asm file_name[.s] ...
 ```sh
 $ ./corewar [-v] [-dump nbr_cycle] [[-n prog_number] prog_name][.cor] ...
 ```
-###Script test
+###Ncurse Visualisator
 ```sh
-$ ./test.sh
+$ ./corewar [-v] [-dump nbr_cycle] [[-n prog_number] prog_name][.cor] -ncurse
 ```
 
 Example of Redcode program
