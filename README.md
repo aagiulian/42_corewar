@@ -45,9 +45,6 @@ $ ./corewar [-d N -v N -ncurse] < [-n N] champion1.cor> <...>{1, 4}
 -sound : puts some cool music on
 ```
 ###Ncurse Visualisator
-```sh
-$ ./corewar [-v] [-dump nbr_cycle] [[-n prog_number] prog_name][.cor] -ncurse
-```
 
 ![Alt text](./screenshots/example.png?raw=true "Corewar Visualisator")
 
