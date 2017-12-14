@@ -28,7 +28,21 @@ $ ./asm [-a][-o output file][-r] <sourcefile.s>
 
 ###Virtual Machine
 ```sh
-$ ./corewar [-v] [-dump nbr_cycle] [[-n prog_number] prog_name][.cor] ...
+$ ./corewar [-d N -v N -ncurse] < [-n N] champion1.cor> <...>{1, 4}
+#### TEXT OUTPUT MODE ##########################################################
+-d N  : Dumps memory after N cycles then exits
+-n N  : Gives the given id to the following champion (file .cor)
+-v N  : Verbosity levels, can be added together to enable several
+ - 0  : Shows only essentials
+ - 1  : Shows lives
+ - 2  : Shows cycles
+ - 4  : Shows operations (Params are NOT litteral ...)
+ - 8  : Show deaths
+ - 16 : Shows PC movements (Except for jumps)
+-a    : Prints operation Aff on the terminal
+#### NCURSES OUTPUT MODE ########################################################
+-ncurse    : Ncurses output mode with some cool features
+-sound : puts some cool music on
 ```
 ###Ncurse Visualisator
 ```sh
